@@ -121,6 +121,9 @@ class FixturesCheckCommand extends Command
         $byUser = [];
         foreach ($addresses as $address) {
             $userId = $address->getUser()->getId();
+            if (null === $userId) {
+                continue;
+            }
             $byUser[$userId][] = $address;
         }
 

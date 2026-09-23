@@ -36,7 +36,7 @@ class ProductTest extends TestCase
     {
         $product = new Product();
         $product->setIsActive(false);
-        $this->assertFalse( $product->isAvailable());
+        $this->assertFalse($product->isAvailable());
     }
 
     public function testIsNotAvailableWhenOutOfStock(): void
@@ -44,7 +44,6 @@ class ProductTest extends TestCase
         $product = new Product();
         $product->setIsActive(true);
         $product->setStock(0);
-        $this->assertFalse($product->isAvailable());   
+        $this->assertFalse($product->isAvailable());
     }
-    
 }

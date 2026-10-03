@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional;
 
-use App\Entity\CartItem;
 use App\Entity\Product;
 use App\Service\CartService;
+use App\Entity\CartItem;
 
 class CartTest extends FunctionalTestCase
 {
@@ -67,13 +67,14 @@ class CartTest extends FunctionalTestCase
 
         $item = $cart->getItems()->first();
         $this->assertNotFalse($item);
+        $itemId = $item->getId();
 
-        $this->client->request('POST', '/cart/items/'.$item->getId().'/remove');
+        $this->client->request('POST', '/cart/items/'.$itemId.'/remove');
 
         $this->assertResponseRedirects();
 
         $this->entityManager()->clear();
-        $removedItem = $this->repository(CartItem::class)->find($item->getId());
+        $removedItem = $this->repository(CartItem::class)->find($itemId);
         $this->assertNull($removedItem);
     }
 

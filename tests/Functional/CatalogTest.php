@@ -32,6 +32,16 @@ class CatalogTest extends FunctionalTestCase
         $this->assertSelectorTextNotContains('body', 'Produit Test');
     }
 
+    public function testFilterByCategory(): void
+    {
+        $this->client->request('GET', '/categories/cooperatif');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('body', 'Pandemic');
+        $this->assertSelectorTextContains('body', 'Wingspan');
+        $this->assertSelectorTextNotContains('body', 'Catan');
+    }
+
     public function testMatureProductHiddenForMinor(): void
     {
         $this->login('minor@example.com');

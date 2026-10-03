@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional;
 
+use App\Entity\CartItem;
 use App\Entity\Product;
 use App\Service\CartService;
-use App\Entity\CartItem;
 
 class CartTest extends FunctionalTestCase
 {
